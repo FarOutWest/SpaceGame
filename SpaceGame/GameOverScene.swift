@@ -14,16 +14,16 @@ class GameOverScene: SKScene {
     let restartLabel = SKLabelNode(text: "Restart")
     
     override func didMove(to view: SKView) {
-        let background = SKSpriteNode(imageNamed: "background")
+        let background = SKSpriteNode(imageNamed: "launch")
         background.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
         background.zPosition = 0
         self.addChild(background)
         
         let gameOverLabel = SKLabelNode(text: "")
         gameOverLabel.text = "Game Over"
-        gameOverLabel.fontSize = 60
+        gameOverLabel.fontSize = 70
         gameOverLabel.fontName = "AvenirNext-Bold"
-        gameOverLabel.color = SKColor.red
+        gameOverLabel.fontColor = SKColor.red
         gameOverLabel.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.85)
         gameOverLabel.zPosition = 1
         self.addChild(gameOverLabel)
@@ -32,8 +32,8 @@ class GameOverScene: SKScene {
         scoreLabel.text = "Score: \(gameScore)"
         scoreLabel.fontSize = 40
         scoreLabel.fontName = "AvenirNext-Bold"
-        scoreLabel.color = SKColor.white
-        scoreLabel.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.7)
+        scoreLabel.fontColor = SKColor.yellow
+        scoreLabel.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.65)
         scoreLabel.zPosition = 1
         self.addChild(scoreLabel)
         
@@ -49,16 +49,16 @@ class GameOverScene: SKScene {
         highScoreLabel.text = "High Score: \(highScore)"
         highScoreLabel.fontSize = 40
         highScoreLabel.fontName = "AvenirNext-Bold"
-        highScoreLabel.color = SKColor.white
-        highScoreLabel.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.5)
+        highScoreLabel.fontColor = SKColor.yellow
+        highScoreLabel.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.45)
         highScoreLabel.zPosition = 1
         self.addChild(highScoreLabel)
         
         restartLabel.text = "Restart"
-        restartLabel.fontSize = 50
+        restartLabel.fontSize = 60
         restartLabel.fontName = "AvenirNext-Bold"
-        restartLabel.color = SKColor.white
-        restartLabel.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.35)
+        restartLabel.fontColor = SKColor.blue
+        restartLabel.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.15)
         restartLabel.zPosition = 1
         self.addChild(restartLabel)
     }

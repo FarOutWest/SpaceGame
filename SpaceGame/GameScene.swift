@@ -5,8 +5,6 @@
 //  Created by West Castro on 11/10/16.
 //  Copyright © 2016 West Castro. All rights reserved.
 //
-//  helpful tutorial here: https://www.youtube.com/watch?v=7_kftKVT9-Q
-//
 
 import SpriteKit
 import GameplayKit
@@ -14,6 +12,7 @@ import GameplayKit
 var gameScore = 0
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    
     let scoreLabel = SKLabelNode(text: "")
     var level = 0
     var lives = 5
@@ -64,7 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         super.init(size: size)
     }
     
-    //Required by SWIFT
+    //Required by xCode & SWIFT
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -75,6 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.physicsWorld.contactDelegate = self
         
+        //set up two seperate backgrounds to create "scrolling background effect"
         for i in 0 ... 1 {
             let background = SKSpriteNode(imageNamed: "background")
             background.size = self.size
@@ -86,6 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(background)
         }
         
+        //Set up Ship
         ship.setScale(0.15)
         ship.position = CGPoint(x: self.size.width/2, y: -ship.size.height)
         ship.zPosition = 2
@@ -96,6 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ship.physicsBody!.contactTestBitMask = physicsCategories.Asteroid
         self.addChild(ship)
         
+        //Set up ScoreLabel
         scoreLabel.text = "Score: 0"
         scoreLabel.fontSize = 25
         scoreLabel.fontName = "AvenirNext-Bold"
@@ -105,6 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.zPosition = 100
         self.addChild(scoreLabel)
         
+        //Set up LivesLabel
         livesLabel.text = "Lives: 5"
         livesLabel.fontSize = 25
         livesLabel.fontName = "AvenirNext-Bold"
@@ -114,10 +117,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         livesLabel.zPosition = 100
         self.addChild(livesLabel)
         
+        //Animations to add score and lives labels to scene
         let moveOntoScreen = SKAction.moveTo(y: self.size.height * 0.9, duration: 0.75)
         scoreLabel.run(moveOntoScreen)
         livesLabel.run(moveOntoScreen)
         
+        //Set up the Begining game label
         tapToStartLabel.text = "Tap to Begin"
         tapToStartLabel.fontSize = 50
         tapToStartLabel.fontName = "AvenirNext-Bold"
@@ -128,15 +133,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tapToStartLabel.alpha = 0
         self.addChild(tapToStartLabel)
         
+        //Animations for the begining game label
         let fadeInAction = SKAction.fadeIn(withDuration: 0.75)
         tapToStartLabel.run(fadeInAction)
     }
     
+    //Utility variables for the scrolling background funciton below
     var lastUpdateTime: TimeInterval = 0
     var deltaFrameTime: TimeInterval = 0
-    let ammountToMove: CGFloat = 600.0
+    let ammountToMove: CGFloat = 100.0
     
-    func update(currentTime: TimeInterval) {
+    //Function to update the positions of the backgrounds to create the scrolling affect
+    override func update(_ currentTime: TimeInterval) {
         if lastUpdateTime == 0 {
             lastUpdateTime = currentTime
         } else {
@@ -159,6 +167,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    //Function to start the game by changing game states
     func startGame() {
         currentGameState = gameState.inGame
         
@@ -174,6 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ship.run(startGameSequence)
     }
     
+    //Function to lose a life
     func loseLife() {
         lives -= 1
         livesLabel.text = "Lives: \(lives)"
@@ -188,15 +198,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    //Function to add score for destroyed asteroids
     func addScore() {
         gameScore += 1
         scoreLabel.text = "Score: \(gameScore)"
         
-        if gameScore == 10 || gameScore == 20 || gameScore == 30 || gameScore == 40 || gameScore == 50 || gameScore == 60 || gameScore == 70 || gameScore == 80 || gameScore == 100 {
+        if gameScore == 10 || gameScore == 20 || gameScore == 30 || gameScore == 40 || gameScore == 50 || gameScore == 60 || gameScore == 70 || gameScore == 80 || gameScore == 100 || gameScore == 120 || gameScore == 140 || gameScore == 160 || gameScore == 180 || gameScore == 200 || gameScore == 220 || gameScore == 240 || gameScore == 260 || gameScore == 300{
             startNewLevel()
         }
     }
     
+    //Function to declare end of game state
     func gameOver() {
         currentGameState = gameState.afterGame
         
@@ -224,6 +236,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.run(changeSceneSequence)
     }
     
+    //Function used to change to the Game Over Scene after the game has ended
     func changeScene() {
         let sceneToMoveTo = GameOverScene(size: self.size)
         sceneToMoveTo.scaleMode = self.scaleMode
@@ -304,11 +317,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case 3: spawnduration = 1.5
             case 4: spawnduration = 1.25
             case 5: spawnduration = 1.0
-            case 6: spawnduration = 0.75
-            case 7: spawnduration = 0.5
-            case 8: spawnduration = 0.25
-            case 9: spawnduration = 0.15
-            case 10: spawnduration = 0.1
+            case 6: spawnduration = 0.9
+            case 7: spawnduration = 0.8
+            case 8: spawnduration = 0.7
+            case 9: spawnduration = 0.6
+            case 10: spawnduration = 0.5
+            case 11: spawnduration = 0.45
+            case 12: spawnduration = 0.4
+            case 13: spawnduration = 0.35
+            case 14: spawnduration = 0.3
+            case 15: spawnduration = 0.25
+            case 16: spawnduration = 0.2
+            case 17: spawnduration = 0.15
+            case 18: spawnduration = 0.1
+            case 19: spawnduration = 0.05
             default:
                 spawnduration = 2.0
                 print("cannot find level information")
@@ -403,6 +425,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         asteroid1.zRotation += random(min: 0.0, max: 360.0)
     }
     
+    //Function to either start the game or to fire a porjectile when the screen is touched by the user
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if currentGameState == gameState.preGame {
             startGame()

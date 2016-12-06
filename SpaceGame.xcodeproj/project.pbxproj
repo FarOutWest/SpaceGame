@@ -109,12 +109,12 @@
 				57B3C2641DD51EF000227F41 /* GameScene.sks */,
 				57B3C2661DD51EF000227F41 /* Actions.sks */,
 				57B3C2681DD51EF000227F41 /* GameScene.swift */,
+				57BBE71E1DDE58B500093E22 /* GameOverScene.swift */,
 				57B3C26A1DD51EF000227F41 /* GameViewController.swift */,
 				57B3C26C1DD51EF000227F41 /* Main.storyboard */,
 				57B3C26F1DD51EF000227F41 /* Assets.xcassets */,
 				57B3C2711DD51EF000227F41 /* LaunchScreen.storyboard */,
 				57B3C2741DD51EF000227F41 /* Info.plist */,
-				57BBE71E1DDE58B500093E22 /* GameOverScene.swift */,
 			);
 			path = SpaceGame;
 			sourceTree = "<group>";
